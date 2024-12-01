@@ -1,0 +1,661 @@
+{
+	"openapi": "3.0.0",
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"UserResponseModel": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"token": {
+						"type": "string",
+						"default": ""
+					},
+					"username": {
+						"type": "string",
+						"default": ""
+					},
+					"email": {
+						"type": "string",
+						"default": ""
+					},
+					"phone": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string",
+						"default": ""
+					},
+					"location": {
+						"type": "string"
+					},
+					"friends": {
+						"items": {
+							"$ref": "#/components/schemas/UserResponseModel"
+						},
+						"type": "array"
+					},
+					"future_walks": {
+						"items": {
+							"$ref": "#/components/schemas/WalkModel"
+						},
+						"type": "array"
+					},
+					"history_walks": {
+						"items": {
+							"$ref": "#/components/schemas/WalkModel"
+						},
+						"type": "array"
+					},
+					"collections": {
+						"items": {
+							"$ref": "#/components/schemas/CollectionModel"
+						},
+						"type": "array"
+					},
+					"likes": {
+						"items": {
+							"$ref": "#/components/schemas/ReelModel"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"id"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"WalkModel": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"date": {
+						"type": "string",
+						"default": ""
+					},
+					"time": {
+						"type": "string",
+						"default": ""
+					},
+					"name": {
+						"type": "string",
+						"default": ""
+					},
+					"description": {
+						"type": "string",
+						"default": ""
+					},
+					"history_friends": {
+						"items": {
+							"$ref": "#/components/schemas/UserResponseModel"
+						},
+						"type": "array"
+					},
+					"future_friends": {
+						"items": {
+							"$ref": "#/components/schemas/UserResponseModel"
+						},
+						"type": "array"
+					},
+					"reels": {
+						"items": {
+							"$ref": "#/components/schemas/ReelModel"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"id"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ReelModel": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"image": {
+						"type": "string",
+						"default": ""
+					},
+					"title": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"user": {
+						"$ref": "#/components/schemas/UserResponseModel"
+					},
+					"walk": {
+						"$ref": "#/components/schemas/WalkModel"
+					},
+					"collections": {
+						"items": {
+							"$ref": "#/components/schemas/CollectionModel"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"id",
+					"title",
+					"description",
+					"user",
+					"walk",
+					"collections"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CollectionModel": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"user": {
+						"items": {
+							"$ref": "#/components/schemas/UserResponseModel"
+						},
+						"type": "array"
+					},
+					"reels": {
+						"items": {
+							"$ref": "#/components/schemas/ReelModel"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"user",
+					"reels"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UserRegisterModel": {
+				"properties": {
+					"username": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"username",
+					"email",
+					"password"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UserLoginModel": {
+				"properties": {
+					"email": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"email",
+					"password"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ReelDtoModel": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"image": {
+						"type": "string"
+					},
+					"title": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"user": {
+						"$ref": "#/components/schemas/UserResponseModel"
+					}
+				},
+				"required": [
+					"image",
+					"title",
+					"description",
+					"user"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"WalkDtoModel": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"history_friends": {
+						"items": {
+							"$ref": "#/components/schemas/UserResponseModel"
+						},
+						"type": "array"
+					},
+					"future_friends": {
+						"items": {
+							"$ref": "#/components/schemas/UserResponseModel"
+						},
+						"type": "array"
+					},
+					"reels": {
+						"items": {
+							"$ref": "#/components/schemas/ReelDtoModel"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"name",
+					"description",
+					"reels"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {
+			"jwt": {
+				"type": "apiKey",
+				"name": "Authorization",
+				"in": "header"
+			}
+		}
+	},
+	"info": {
+		"title": "backend",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"paths": {
+		"/auth/register": {
+			"post": {
+				"operationId": "registerUser",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/UserResponseModel"
+										},
+										{
+											"type": "string"
+										}
+									]
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid data",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"BackendApi"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UserRegisterModel"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/auth/login": {
+			"post": {
+				"operationId": "loginUser",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/UserResponseModel"
+										},
+										{
+											"type": "string"
+										}
+									]
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid data",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"BackendApi"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UserLoginModel"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/auth/profile/{userId}": {
+			"get": {
+				"operationId": "GetProfile",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/UserResponseModel"
+										},
+										{
+											"type": "string"
+										}
+									]
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid data",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"BackendApi"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/walks/create": {
+			"post": {
+				"operationId": "createWalk",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/WalkModel"
+										},
+										{
+											"type": "string"
+										}
+									]
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid data",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"BackendApi"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/WalkDtoModel"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/walks/future/{userId}": {
+			"get": {
+				"operationId": "getFutureWalksByUserId",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"items": {
+												"$ref": "#/components/schemas/WalkModel"
+											},
+											"type": "array"
+										},
+										{
+											"type": "string"
+										}
+									]
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid data",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"BackendApi"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/walks/history/{userId}": {
+			"get": {
+				"operationId": "getHistoryWalksByUserId",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"items": {
+												"$ref": "#/components/schemas/WalkModel"
+											},
+											"type": "array"
+										},
+										{
+											"type": "string"
+										}
+									]
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid data",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"BackendApi"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/walks/walk/{walkId}": {
+			"get": {
+				"operationId": "getWalksById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/WalkModel"
+										},
+										{
+											"type": "string"
+										}
+									]
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid data",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"BackendApi"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "walkId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
