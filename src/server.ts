@@ -65,7 +65,8 @@ createConnection({
         CollectionModel,
     ],
     synchronize: true, // Set to false in production
-}).then(connection => {
+})
+    .then(connection => {
     console.log("Database connected!");
     
     const router = new Router();
@@ -75,4 +76,5 @@ createConnection({
     app.listen(3000);
     
     console.log('started');
-}).catch(error => console.log("Database connection error: ", error));
+})
+    .catch(error => console.log("Database connection error: ", error));
